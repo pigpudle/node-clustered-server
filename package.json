@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon cluster.js",
     "load": "autocannon -c 200 -d 10 http://localhost:8800"
   },
   "repository": {
