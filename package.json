@@ -1,0 +1,24 @@
+{
+  "name": "clustered-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "load": "autocannon -c 200 -d 10 http://localhost:8800"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pigpudle/node-clustered-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pigpudle/node-clustered-server/issues"
+  },
+  "homepage": "https://github.com/pigpudle/node-clustered-server#readme",
+  "devDependencies": {
+    "autocannon": "^7.10.0",
+    "nodemon": "^2.0.22"
+  }
+}
