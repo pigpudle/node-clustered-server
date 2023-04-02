@@ -10,7 +10,12 @@ if (cluster.isMaster) {
 
   // Run workers (count = CPUs - 1 (1 core is for the master))
   for (let i = 0; i < cpusCount - 1; i++) {
-    cluster.fork();
+    const worker = cluster.fork();
+    worker.on('exit', () => {
+      console.log(`Worker died! Pid: ${worker.process.pid}`);
+      // Run worker again
+      cluster.fork();
+    })
   }
 }
 
