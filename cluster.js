@@ -8,8 +8,10 @@ if (cluster.isMaster) {
   console.log(`CPUs: ${cpusCount}`);
   console.log(`Master started. Pid: ${pid}`);
 
-  // Run itself as worker
-  cluster.fork();
+  // Run workers (count = CPUs - 1 (1 core is for the master))
+  for (let i = 0; i < cpusCount - 1; i++) {
+    cluster.fork();
+  }
 }
 
 if (cluster.isWorker) {
