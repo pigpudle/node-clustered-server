@@ -15,10 +15,25 @@ if (cluster.isMaster) {
       console.log(`Worker died! Pid: ${worker.process.pid}`);
       // Run worker again
       cluster.fork();
-    })
+    });
+
+    // Send message to worker
+    worker.send('Hello from server!');
+    // Receive messages from worker
+    worker.on('message', (msg) => {
+      console.log(`Message from worker ${worker.process.pid}: ${JSON.stringify(msg)}`);
+    });
   }
 }
 
 if (cluster.isWorker) {
   require('./worker.js');
+
+  // Receive messages from server
+  process.on('message', (msg) => {
+    console.log(`Message from master: ${msg}`);
+  });
+
+  // Send message to server
+  process.send({ text: 'Hello', pid });
 }
